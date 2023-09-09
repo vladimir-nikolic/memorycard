@@ -10,6 +10,7 @@ function App() {
   //const [selectedCard, setSelectedCard] = useState(null)
 
   function randomizeDeck(array) {
+    
     let currentIndex = array.length,
       randomIndex;
 
