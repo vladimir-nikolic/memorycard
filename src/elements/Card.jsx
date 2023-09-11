@@ -1,9 +1,13 @@
 import React from "react";
 import mySvg from "../assets/react.svg";
 
+
 function Card({ name, handleClick, status, id }) {
+
+
+
   return (
-    <div id={id} name={name} onClick={() => handleClick(id)}>
+    <div id={id} style={status !== "" ? ({pointerEvents:'none'}):({pointerEvents:'auto'})} name={name} onClick={() => handleClick(id)}>
       {status !== "active" ? (
         <img src={mySvg} style={{ width: "150px", height: "150px" }} />
       ) : (
