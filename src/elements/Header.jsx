@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-function Header({difficulty, setDifficulty}) {
+function Header({ difficulty, setDifficulty }) {
   return (
     <div className="container">
       <h1>Memory Game</h1>
@@ -19,7 +19,7 @@ function Header({difficulty, setDifficulty}) {
                 setDifficulty(null);
                 setTimeout(() => {
                   setDifficulty(prevDifficulty);
-                }, 2000);
+                }, 500);
               }}>
               Start Over
             </button>
@@ -31,4 +31,4 @@ function Header({difficulty, setDifficulty}) {
   );
 }
 
-export default Header
+export default Header;

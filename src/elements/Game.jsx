@@ -56,19 +56,19 @@ export const Game = ({ difficulty, setDifficulty }) => {
       getData();
     }
   }, []);
-  
-  const [selected, setSelected] = useState('');
 
-  function compareSelected(id){
+  //click logika
 
+  const [selected, setSelected] = useState("");
 
-    if(deck[id].name === deck[selected].name){
+  function compareSelected(id) {
+    if (deck[id].name === deck[selected].name) {
       const newDeck = [...deck];
-      newDeck[id].status = 'active'
+      newDeck[id].status = "active";
       newDeck[selected].status = "active";
       setDeck(newDeck);
-      setSelected('')
-    }else{
+      setSelected("");
+    } else {
       const newDeck = [...deck];
       newDeck[id].status = "active";
       newDeck[selected].status = "active";
@@ -83,17 +83,15 @@ export const Game = ({ difficulty, setDifficulty }) => {
     }
   }
 
-
   function handleClick(id) {
-    if(selected === ''){
+    if (selected === "") {
       const newDeck = [...deck];
       newDeck[id].status = "active";
       setDeck(newDeck);
-      setSelected(id)
-    }else{
+      setSelected(id);
+    } else {
       compareSelected(id);
     }
-    
   }
 
   if (deck.length === 0) {

@@ -7,7 +7,7 @@ import { Game } from "./elements/Game";
 function App() {
   const [difficulty, setDifficulty] = useState(null)
   
-
+  //console.log(difficulty)
   return (
     <>
       <Header difficulty={difficulty} setDifficulty={setDifficulty} />
