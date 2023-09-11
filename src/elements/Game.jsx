@@ -23,11 +23,18 @@ export const Game = ({ difficulty, setDifficulty }) => {
   }
 
   function setElementsOfDeck(array) {
+    const deck=[]
     const firstDeckArr = array.map((elem) => elem.name);
-    const DeckArr = randomizeDeck([...firstDeckArr].concat(firstDeckArr));
+    const deckArr = randomizeDeck([...firstDeckArr].concat(firstDeckArr));
 
-    return DeckArr;
-  
+    for (let i = 0; i < deckArr.length; i++) {
+      let elem = {
+        name: `${deckArr[i]}`,
+        status: '',
+      };
+    deck.push(elem);
+    }
+    return deck
   }
 
 
@@ -53,13 +60,23 @@ export const Game = ({ difficulty, setDifficulty }) => {
   },[])  
   
 
+  function handleClick(name){
+    alert(name)
+  }
+
+
+  if(deck.length === 0){
+    return <h1>...LOADING</h1>
+  }
   return (
     <div className="parent">
-      {deck.map((name, index) => {
+      {deck.map(( elem, index) => {
         return (
           <Card
             key={index}
-            name={name}
+            name={elem.name}
+            status={elem.status}
+            handleClick={handleClick}
           />
         );
       })}

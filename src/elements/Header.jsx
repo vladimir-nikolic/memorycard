@@ -16,10 +16,9 @@ function Header({difficulty, setDifficulty}) {
             <button
               onClick={() => {
                 const prevDifficulty = difficulty;
-                setDifficulty(null);
                 setTimeout(() => {
                   setDifficulty(prevDifficulty);
-                }, 5);
+                }, 5000);
               }}>
               Start Over
             </button>
