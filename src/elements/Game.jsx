@@ -1,12 +1,20 @@
-import { React, useEffect, useState } from "react";
-import Card from "./Card";
-
-export const Game = ({ difficulty, setDifficulty }) => {
-  const numberOfCard = difficulty / 2;
-
+import { React, useState, useEffect } from "react";
+import { DemoGame } from "./DemoGame";
+import { NewGame } from "./NewGame";
+function Game({
+  difficulty,
+  setDifficulty,
+  newGame,
+  setNewGame,
+  newCards,
+  setNewCards,
+}) {
   const [deck, setDeck] = useState(
     JSON.parse(localStorage.getItem("deck")) || []
   );
+
+  const numberOfCard = difficulty;
+  const changeCards = newCards;
 
   function randomizeDeck(array) {
     let length = array.length;
@@ -31,9 +39,9 @@ export const Game = ({ difficulty, setDifficulty }) => {
         name: `${deckArr[i]}`,
         status: "",
       };
-      deck.push(elem);
+      deckEl.push(elem);
     }
-
+    //console.log(deckEl)
     return deckEl;
   }
 
@@ -43,7 +51,7 @@ export const Game = ({ difficulty, setDifficulty }) => {
       const getData = async () => {
         try {
           const resp = await fetch(
-            `https://pokeapi.co/api/v2/pokemon?limit=${numberOfCard}`
+            `https://pokeapi.co/api/v2/pokemon?limit=${numberOfCard}&offset=${changeCards}`
           );
           const data = await resp.json();
           const elements = setElementsOfDeck(data.results);
@@ -57,59 +65,15 @@ export const Game = ({ difficulty, setDifficulty }) => {
     }
   }, []);
 
-  //click logika
-
-  const [selected, setSelected] = useState("");
-
-  function compareSelected(id) {
-    if (deck[id].name === deck[selected].name) {
-      const newDeck = [...deck];
-      newDeck[id].status = "active";
-      newDeck[selected].status = "active";
-      setDeck(newDeck);
-      setSelected("");
-    } else {
-      const newDeck = [...deck];
-      newDeck[id].status = "active";
-      newDeck[selected].status = "active";
-      setDeck(newDeck);
-      setTimeout(() => {
-        const newDeck = [...deck];
-        newDeck[id].status = "";
-        newDeck[selected].status = "";
-        setDeck(newDeck);
-        setSelected("");
-      }, 1000);
-    }
-  }
-
-  function handleClick(id) {
-    if (selected === "") {
-      const newDeck = [...deck];
-      newDeck[id].status = "active";
-      setDeck(newDeck);
-      setSelected(id);
-    } else {
-      compareSelected(id);
-    }
-  }
-
-  if (deck.length === 0) {
-    return <h1>...LOADING</h1>;
-  }
   return (
-    <div className="parent">
-      {deck.map((elem, index) => {
-        return (
-          <Card
-            key={index}
-            id={index}
-            name={elem.name}
-            status={elem.status}
-            handleClick={handleClick}
-          />
-        );
-      })}
-    </div>
+    <>
+      {newGame ? (
+        <NewGame deck={deck} setDeck={setDeck} setNewGame={setNewGame}/>
+      ) : (
+        <DemoGame deck={deck} setDeck={setDeck} />
+      )}
+    </>
   );
-};
+}
+
+export default Game;
