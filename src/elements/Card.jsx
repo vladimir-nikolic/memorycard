@@ -6,7 +6,11 @@ function Card({ name, handleClick, status, id }) {
     <div
       id={id}
       style={
-        status !== "" ? { pointerEvents: "none" } : { pointerEvents: "auto" }
+        status !== ""
+          ? status === "disabled"
+            ? { pointerEvents: "none" }
+            : { pointerEvents: "auto" }
+          : { pointerEvents: "auto" }
       }
       name={name}
       onClick={() => handleClick(id)}>

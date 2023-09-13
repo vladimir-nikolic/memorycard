@@ -1,9 +1,7 @@
 import { React, useState } from "react";
 import Card from "./Card";
 
-export const NewGame = ({ deck, setDeck, setNewGame}) => {
- 
-
+export const NewGame = ({ deck, setDeck, setNewGame }) => {
   //click logika
 
   const [selected, setSelected] = useState("");
@@ -17,9 +15,15 @@ export const NewGame = ({ deck, setDeck, setNewGame}) => {
       setSelected("");
     } else {
       const newDeck = [...deck];
-      newDeck[id].status = "active";
-      newDeck[selected].status = "active";
-      setDeck(newDeck);
+      const disabledDeck = newDeck.map((el) => {
+        return {
+          ...el,
+          status: "disabled",
+        };
+      });
+      disabledDeck[id].status = "active";
+      disabledDeck[selected].status = "active";
+      setDeck(disabledDeck);
       setTimeout(() => {
         const newDeck = [...deck];
         newDeck[id].status = "";
