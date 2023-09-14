@@ -11,13 +11,13 @@ function Header({
   const [numberOfCards, setNumberOfCards] = useState(0);
 
   useEffect(() => {
-    const getNumber = async () => {
+    setNumberOfCards(60);
+    /*const getNumber = async () => {
       const res = await fetch(`https://pokeapi.co/api/v2/ability`);
       const data = await res.json();
       //setNumberOfCards(data.count)
-      setNumberOfCards(60);
     };
-    getNumber();
+    getNumber();*/
   }, []);
 
   return (
@@ -30,9 +30,8 @@ function Header({
             <button onClick={() => setDifficulty(12)}>Medium</button>
             <button onClick={() => setDifficulty(16)}>Hard</button>
             <button onClick={() => setNewCards(0)}>Change Cards</button>
-            {!newGame && (
-              <button onClick={() => setNewGame(true)}>Start Game</button>
-            )}
+            <button onClick={() => setNewGame(true)}>Start Game</button>
+          
           </>
         ) : (
           <>
@@ -46,7 +45,7 @@ function Header({
               }}>
               Start Over
             </button>
-            <button onClick={() => setDifficulty(null)}>Main menu</button>
+            <button onClick={() => setNewGame(false)}>Main menu</button>
           </>
         )}
       </div>

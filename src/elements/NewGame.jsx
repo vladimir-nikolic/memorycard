@@ -13,6 +13,7 @@ export const NewGame = ({ deck, setDeck, setNewGame }) => {
       newDeck[selected].status = "active";
       setDeck(newDeck);
       setSelected("");
+    
     } else {
       const newDeck = [...deck];
       const disabledDeck = newDeck.map((el) => { 
