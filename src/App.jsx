@@ -1,34 +1,34 @@
-import "./App.css";
-import { useState, useEffect } from "react";
-import Header from "./elements/Header";
-import Game from "./elements/Game";
+import './App.css'
+import Header from './components/Header'
+import Data from './components/Data'
+import { useState } from 'react';
 
 function App() {
-  const [difficulty, setDifficulty] = useState(8);
-  const [newGame, setNewGame]= useState(false);
-  const [newCards, setNewCards] = useState(0);
-  
-  //console.log(difficulty)
+
+  const [diff, setDiff] = useState(0)
+  const [offset, setOffset] = useState(0)
+  const [gameStatus, setGameStatus] = useState(false)
+
   return (
     <>
       <Header
-        difficulty={difficulty}
-        setDifficulty={setDifficulty}
-        newGame={newGame}
-        setNewGame={setNewGame}
-        newCards={newCards}
-        setNewCards={setNewCards}
+        offset={offset}
+        setOffset={setOffset}
+        diff={diff}
+        setDiff={setDiff}
+        gameStatus={gameStatus}
+        setGameStatus={setGameStatus}
       />
-      <Game
-        difficulty={difficulty}
-        setDifficulty={setDifficulty}
-        newGame={newGame}
-        setNewGame={setNewGame}
-        newCards={newCards}
-        setNewCards={setNewCards}
+      <Data
+        offset={offset}
+        setOffset={setOffset}
+        diff={diff}
+        setDiff={setDiff}
+        gameStatus={gameStatus}
+        setGameStatus={setGameStatus}
       />
     </>
   );
 }
 
-export default App;
+export default App

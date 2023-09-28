@@ -45,6 +45,21 @@ function setElementsOfDeck(array) {
     deckArr.push(elem);
   }
   return randomizeDeck(deckArr);
+
+
+
+  function possibleSolution(arr) {
+    const solution = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = i + 1; j < arr.length; j++) {
+        if (arr[i].name === arr[j].name) {
+          solution.push([i, j]);
+        }
+      }
+    }
+    console.log(solution.flat());
+  }
 }
 
 useEffect(() => {

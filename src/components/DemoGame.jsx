@@ -1,15 +1,23 @@
-import React, { useEffect, useRef } from "react";
-import Card from './Card'
-import mySvg from "../assets/react.svg";
+import React, { useEffect } from 'react'
+import mySvg from '../assets/react.svg'
 
-export const DemoGame = ({ deck, setDeck }) => {
- 
-  
+function DemoGame({ deck, setDeck }) {
+
+  useEffect(() => {
+    const arr = [...deck];
+    const resetDeck = arr.map((el) => {
+      return {
+        ...el,
+        status: "active",
+      };
+    });
+    setDeck(resetDeck);
+  }, []);
 
 
   return (
     <div className="parent">
-      {deck.map((elem, index) => {
+      {deck.map((elem,index) => {
         return (
           <div
             key={index}
@@ -21,14 +29,13 @@ export const DemoGame = ({ deck, setDeck }) => {
                   : { pointerEvents: "auto" }
                 : { pointerEvents: "auto" }
             }
-            name={elem.name}
-            onClick={() => handleClick(id)}>
+            name={elem.name}>
             {elem.status !== "active" ? (
-              <img src={mySvg} style={{ width: "150px", height: "150px" }} />
+              <img src={mySvg} style={{ width: "130px", height: "130px" }} />
             ) : (
               <img
                 src={`https://img.pokemondb.net/artwork/large/${elem.name}.jpg`}
-                style={{ width: "150px", height: "150px" }}
+                style={{ width: "130px", height: "130px" }}
               />
             )}
           </div>
@@ -36,4 +43,6 @@ export const DemoGame = ({ deck, setDeck }) => {
       })}
     </div>
   );
-};
+}
+
+export default DemoGame
