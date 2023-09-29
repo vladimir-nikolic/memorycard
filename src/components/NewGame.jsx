@@ -23,7 +23,7 @@ function NewGame({ deck, setDeck, randomizeDeck }) {
       const newDeck = [...deck];
       newDeck[id].status = "active";
       newDeck[selected].status = "active";
-      console.log(newDeck);
+      console.log(newDeck.filter(el => el.status === 'active').length);
       setDeck(newDeck);
       setSelected("");
     } else {
